@@ -4,20 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Cumpleaños</title>
-    <link rel="stylesheet" href="style.css"> <!-- Enlace al CSS -->
+    <style>
+        /* Aquí va tu CSS */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0e68c;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            transition: background-color 0.5s;
+            cursor: pointer;
+        }
+        h1 {
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            font-size: 18px;
+            display: none; /* Ocultar mensaje inicialmente */
+        }
+        .cake {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+        .show {
+            display: block; /* Mostrar mensaje al hacer clic */
+        }
+    </style>
 </head>
 <body>
-    <div class="card" onclick="celebrate()">
-        <div class="card-content">
-            <h1>¡Bon Anniversaire KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
-            <div class="cake">🎂</div>
-        </div>
-        <div class="card-back">
-            <p class="message">¡J’espère que vous avez une excellente journée!</p>
-            <p class="message">¡Y que CHSM la cumpleañera!</p>
-        </div>
-    </div>
-    <script src="script.js"></script> <!-- Enlace al JavaScript -->
+<div class="card" onclick="celebrate()">
+    <h1>¡Bon Anniversaire KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
+    <div class="cake">🎂</div>
+    <p class="message" style="display: none;">¡J’espère que vous avez une excellente journée!</p>
+    <p class="message" style="display: none;">¡Y que CHSM la cumpleañera!</p>
+</div>
+
+<script>
+    function celebrate() {
+        const card = document.querySelector('.card');
+        const messages = document.querySelectorAll('.message');
+
+        // Cambiar el color de fondo de la tarjeta
+        card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffffff' : 'lightblue';
+
+        // Mostrar todos los mensajes de cumpleaños
+        messages.forEach(message => {
+            message.style.display = message.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+</script>
+
 </body>
 </html>
+
+
 
