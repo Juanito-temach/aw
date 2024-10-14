@@ -44,12 +44,29 @@
     </style>
 </head>
 <body>
-    <div class="card" onclick="celebrate()">
-        <h1>¡Bon Anniversaire KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
-        <div class="cake">🎂</div>
-        <p id="message">¡J’espère que vous avez une excellente journée!</p>
-        <p id="message">¡Y que CHSM la cumpleañera!</p>
-    </div>
+<div class="card" onclick="celebrate()">
+    <h1>¡Bon Anniversaire !</h1>
+    <h1>¡KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
+    <div class="cake">🎂</div>
+    <p class="message" style="display: none;">¡J’espère que vous avez une excellente journée!</p>
+    <p class="message" style="display: none;">¡Y que CHSM la cumpleañera!</p>
+</div>
+
+<script>
+    function celebrate() {
+        const card = document.querySelector('.card');
+        const messages = document.querySelectorAll('.message');
+
+        // Cambiar el color de fondo de la tarjeta
+        card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffffff' : 'lightblue';
+
+        // Mostrar todos los mensajes de cumpleaños
+        messages.forEach(message => {
+            message.style.display = message.style.display === 'block' ? 'none' : 'block';
+        });
+    }
+</script>
+
 
     <script>
         function celebrate() {
