@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Cumpleaños</title>
+    <title>Feliz Cumpleaños - Halloween</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet"> <!-- Fuente de Halloween -->
     <style>
         /* Aquí va tu CSS */
         body {
@@ -11,45 +12,108 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0e68c;
-            font-family: Arial, sans-serif;
+            background-color: #333; /* Fondo oscuro para Halloween */
+            font-family: 'Creepster', cursive; /* Cambiar tipo de letra */
             margin: 0;
+            overflow: hidden; /* Para evitar el desplazamiento */
         }
         .card {
-            background-color: #ffffff;
+            background-color: #ffcc00;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
             padding: 20px;
             text-align: center;
             width: 300px;
             transition: background-color 0.5s;
             cursor: pointer;
+            position: relative;
+            z-index: 1; /* Para que la carta esté sobre otros elementos */
         }
         h1 {
-            color: #ff6f61;
-            margin-bottom: 10px;
+            color: #ff5722; /* Color naranja para Halloween */
+            margin: 5px 0;
         }
-        p {
-            color: #555;
+        .message {
+            color: #222; /* Color oscuro para el texto */
             font-size: 18px;
-            display: none; /* Ocultar mensaje inicialmente */
-        }
-        .cake {
-            font-size: 50px;
-            margin: 20px 0;
+            display: none; /* Ocultar mensajes inicialmente */
+            transition: opacity 0.5s ease;
+            opacity: 0; /* Iniciar con opacidad 0 */
         }
         .show {
-            display: block; /* Mostrar mensaje al hacer clic */
+            display: block; /* Mostrar mensaje */
+            opacity: 1; /* Cambiar opacidad a 1 */
+        }
+        .balloon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; /* Forma redonda para globos */
+            background-color: #800080; /* Color morado */
+            position: absolute;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            animation: float 3s infinite; /* Animación de flotación */
+        }
+        .balloon.h1 {
+            left: 20px; /* Posición del primer globo */
+            bottom: -30px; /* Colocarlos justo pegados a la tarjeta */
+        }
+        .balloon.h2 {
+            left: 100px; /* Posición del segundo globo */
+            bottom: -30px; /* Colocarlos justo pegados a la tarjeta */
+        }
+        .balloon.h3 {
+            left: 180px; /* Posición del tercer globo */
+            bottom: -30px; /* Colocarlos justo pegados a la tarjeta */
+        }
+        .string {
+            width: 2px;
+            height: 40px; /* Longitud del hilo */
+            background-color: #ffffff; /* Color del hilo en blanco */
+            position: absolute;
+            top: 100%; /* Colocar el hilo pegado al globo */
+            left: 50%; /* Centrar el hilo */
+            transform: translateX(-50%); /* Ajustar la posición del hilo */
+        }
+        .halloween-emoji, .cake, .confetti {
+            font-size: 50px; /* Tamaño de los emojis */
+            position: absolute;
+        }
+        .halloween-emoji {
+            top: -40px; /* Colocar el emoji de Halloween en la parte superior */
+            left: -40px; /* Ajustar posición a la izquierda */
+        }
+        .cake {
+            bottom: -40px; /* Colocar el emoji de pastel en la parte inferior */
+            right: -40px; /* Ajustar posición a la derecha */
+        }
+        .confetti {
+            top: -40px; /* Colocar el emoji de confeti en la parte superior derecha */
+            right: -40px; /* Ajustar posición a la derecha */
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body>
 <div class="card" onclick="celebrate()">
-    <h1>¡Bon Anniversaire i!</h1>
-    <h1>¡KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
-    <div class="cake">🎂</div>
-    <p class="message" style="display: none;">¡J’espère que vous avez une excellente journée!</p>
-    <p class="message" style="display: none;">¡Y que CHSM la cumpleañera!</p>
+    <div class="halloween-emoji">🎃</div> <!-- Emoji de Halloween a la izquierda -->
+    
+    <h1>¡Bon Anniversaire!</h1>
+    
+    <div class="cake">🎂</div> <!-- Emoji de pastel de cumpleaños a la derecha -->
+    
+    <div class="confetti">🎉</div> <!-- Emoji de confeti en la parte superior derecha -->
+    
+    <p class="message">¡KharMoRithA, Kalet, KariuZ, Kari!</p>
+    <p class="message">¡J’espère que vous avez une excellente journée!</p>
+    <p class="message">¡Y que CHSM la cumpleañera!</p>
+
+    <!-- Globos debajo de la carta -->
+    <div class="balloon h1"><div class="string"></div></div> <!-- Primer globo morado -->
+    <div class="balloon h2"><div class="string"></div></div> <!-- Segundo globo morado -->
+    <div class="balloon h3"><div class="string"></div></div> <!-- Tercer globo morado -->
 </div>
 
 <script>
@@ -58,11 +122,17 @@
         const messages = document.querySelectorAll('.message');
 
         // Cambiar el color de fondo de la tarjeta
-        card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffffff' : 'lightblue';
+        card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffcc00' : 'lightblue';
 
         // Mostrar todos los mensajes de cumpleaños
         messages.forEach(message => {
-            message.style.display = message.style.display === 'block' ? 'none' : 'block';
+            if (message.style.display === 'block') {
+                message.classList.remove('show');
+                setTimeout(() => { message.style.display = 'none'; }, 500); // Esperar antes de ocultar
+            } else {
+                message.style.display = 'block';
+                setTimeout(() => { message.classList.add('show'); }, 10); // Agregar clase para animación
+            }
         });
     }
 </script>
