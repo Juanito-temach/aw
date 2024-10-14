@@ -4,61 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Cumpleaños</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0e68c;
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
-        .card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            text-align: center;
-            width: 300px;
-            transform: perspective(1000px);
-            transition: transform 0.6s;
-            cursor: pointer;
-            position: relative;
-        }
-        .card.open {
-            transform: rotateY(180deg);
-        }
-        .card-content, .card-back {
-            backface-visibility: hidden;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
-        }
-        .card-back {
-            transform: rotateY(180deg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0e68c;
-        }
-        h1 {
-            color: #ff6f61;
-            margin: 10px 0;
-        }
-        p {
-            color: #555;
-            font-size: 18px;
-            display: none; /* Ocultar mensajes inicialmente */
-        }
-        .show {
-            display: block; /* Mostrar mensajes al abrir la carta */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Enlace al CSS -->
 </head>
 <body>
     <div class="card" onclick="celebrate()">
@@ -71,27 +17,7 @@
             <p class="message">¡Y que CHSM la cumpleañera!</p>
         </div>
     </div>
-
-    <script>
-        function celebrate() {
-            const card = document.querySelector('.card');
-            const messages = document.querySelectorAll('.message');
-
-            // Cambiar el estado de la carta
-            card.classList.toggle('open');
-
-            // Mostrar los mensajes de cumpleaños
-            if (card.classList.contains('open')) {
-                messages.forEach(message => {
-                    message.classList.add('show');
-                });
-            } else {
-                messages.forEach(message => {
-                    message.classList.remove('show');
-                });
-            }
-        }
-    </script>
+    <script src="script.js"></script> <!-- Enlace al JavaScript -->
 </body>
 </html>
 
