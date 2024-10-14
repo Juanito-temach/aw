@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz Cumpleaños</title>
     <style>
-        /* Aquí va tu CSS */
         body {
             display: flex;
             justify-content: center;
@@ -22,63 +21,77 @@
             padding: 20px;
             text-align: center;
             width: 300px;
-            transition: background-color 0.5s;
+            transform: perspective(1000px);
+            transition: transform 0.6s;
             cursor: pointer;
+            position: relative;
+        }
+        .card.open {
+            transform: rotateY(180deg);
+        }
+        .card-content, .card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0e68c;
         }
         h1 {
             color: #ff6f61;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
         p {
             color: #555;
             font-size: 18px;
-            display: none; /* Ocultar mensaje inicialmente */
-        }
-        .cake {
-            font-size: 50px;
-            margin: 20px 0;
+            display: none; /* Ocultar mensajes inicialmente */
         }
         .show {
-            display: block; /* Mostrar mensaje al hacer clic */
+            display: block; /* Mostrar mensajes al abrir la carta */
         }
     </style>
 </head>
 <body>
-<div class="card" onclick="celebrate()">
-    <h1>¡Bon Anniversaire !</h1>
-    <h1>¡KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
-    <div class="cake">🎂</div>
-    <p class="message" style="display: none;">¡J’espère que vous avez une excellente journée!</p>
-    <p class="message" style="display: none;">¡Y que CHSM la cumpleañera!</p>
-</div>
-
-<script>
-    function celebrate() {
-        const card = document.querySelector('.card');
-        const messages = document.querySelectorAll('.message');
-
-        // Cambiar el color de fondo de la tarjeta
-        card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffffff' : 'lightblue';
-
-        // Mostrar todos los mensajes de cumpleaños
-        messages.forEach(message => {
-            message.style.display = message.style.display === 'block' ? 'none' : 'block';
-        });
-    }
-</script>
-
+    <div class="card" onclick="celebrate()">
+        <div class="card-content">
+            <h1>¡Bon Anniversaire KhaRmoRitHa, Kalet, KariuS, Kari!</h1>
+            <div class="cake">🎂</div>
+        </div>
+        <div class="card-back">
+            <p class="message">¡J’espère que vous avez une excellente journée!</p>
+            <p class="message">¡Y que CHSM la cumpleañera!</p>
+        </div>
+    </div>
 
     <script>
         function celebrate() {
             const card = document.querySelector('.card');
-            const message = document.getElementById('message');
+            const messages = document.querySelectorAll('.message');
 
-            // Cambiar el color de fondo de la tarjeta
-            card.style.backgroundColor = card.style.backgroundColor === 'lightblue' ? '#ffffff' : 'lightblue';
+            // Cambiar el estado de la carta
+            card.classList.toggle('open');
 
-            // Mostrar el mensaje de cumpleaños
-            message.classList.toggle('show');
+            // Mostrar los mensajes de cumpleaños
+            if (card.classList.contains('open')) {
+                messages.forEach(message => {
+                    message.classList.add('show');
+                });
+            } else {
+                messages.forEach(message => {
+                    message.classList.remove('show');
+                });
+            }
         }
     </script>
 </body>
 </html>
+
